@@ -85,12 +85,12 @@
         "pantheon-systems/quicksilver-pushback": "^2",
         "rvtraveller/qs-composer-installer": "^1.1",
         "zaporylie/composer-drupal-optimizations": "^1.0",
-        "drupal/config_perms":"^1.2",
-        "drupal/nodeaccess":"^1.0",
-        "drupal/typed_data":"^1.0",
+        "drupal/config_perms": "^1.2",
+        "drupal/nodeaccess": "^1.0",
+        "drupal/typed_data": "^1.0",
         "drupal/core": "^8.6.15",
         "webflo/drupal-core-strict": "^8.6.15"
-        
+
     },
     "require-dev": {
         "behat/behat": "3.*",
@@ -112,7 +112,7 @@
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "autoload": {
         "classmap": [
@@ -149,13 +149,12 @@
     "extra": {
         "installer-paths": {
             "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
-            "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"],
-            "web/modules/custom/{$name}": ["drupalwxt/wxt_library"],
-            "web/libraries/{$name}": ["type:drupal-library"]
+            "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
         },
         "build-env": {
             "install-cms": [
@@ -177,10 +176,6 @@
                 ".htaccess",
                 "web.config"
             ]
-        },
-        "enable-patching": true, 
-        "patchLevel":{
-          "drupal/core": "-p2"
         }
     },
     "config": {
@@ -188,7 +183,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "7.1"
+            "php": "7.0.8"
         }
     }
 }
