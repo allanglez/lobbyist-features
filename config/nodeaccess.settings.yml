@@ -1,0 +1,137 @@
+grants:
+  view: 1
+  edit: 1
+  delete: 1
+priority: 0
+preserve: 1
+_core:
+  default_config_hash: Zno4MMkbreZeJZgnY0DXCPksXkuYye3MyIFlVuh-xLc
+article:
+  anonymous:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  authenticated:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  administrator:
+    grant_view: 0
+    grant_update: 0
+    grant_delete: 0
+  in_house_lobbyist:
+    grant_view: 0
+    grant_update: 0
+    grant_delete: 0
+  consultant_lobbyist:
+    grant_view: 0
+    grant_update: 0
+    grant_delete: 0
+  role_administrator:
+    grant_view: 0
+    grant_update: 0
+    grant_delete: 0
+  author:
+    grant_view: 0
+    grant_update: 0
+    grant_delete: 0
+page:
+  anonymous:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  authenticated:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  administrator:
+    grant_view: '1'
+    grant_update: '1'
+    grant_delete: '1'
+  in_house_lobbyist:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  consultant_lobbyist:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  role_administrator:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  author:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+webform:
+  administrator:
+    grant_view: '1'
+    grant_update: '1'
+    grant_delete: '1'
+  in_house_lobbyist:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  consultant_lobbyist:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  role_administrator:
+    grant_view: '1'
+    grant_update: 0
+    grant_delete: 0
+  anonymous:
+    grant_view: 0
+    grant_update: 0
+    grant_delete: 0
+  authenticated:
+    grant_view: 0
+    grant_update: 0
+    grant_delete: 0
+  author:
+    grant_view: 0
+    grant_update: 0
+    grant_delete: 0
+role_alias:
+  anonymous:
+    allow: '1'
+    alias: 'Anonymous user'
+    weight: '0'
+    name: 'Anonymous user'
+  authenticated:
+    allow: '1'
+    alias: 'Authenticated user'
+    weight: '0'
+    name: 'Authenticated user'
+  administrator:
+    allow: '1'
+    alias: Administrator
+    weight: '0'
+    name: Administrator
+  in_house_lobbyist:
+    allow: '1'
+    alias: 'In-house lobbyist'
+    weight: '0'
+    name: 'In-house lobbyist'
+  consultant_lobbyist:
+    allow: '1'
+    alias: 'Consultant lobbyist'
+    weight: '0'
+    name: 'Consultant lobbyist'
+  role_administrator:
+    allow: '1'
+    alias: 'Role administrator'
+    weight: '0'
+    name: 'Role administrator'
+role_map:
+  anonymous: 1
+  authenticated: 2
+  administrator: 3
+  in_house_lobbyist: 4
+  consultant_lobbyist: 5
+  role_administrator: 6
+allowed_types:
+  article: 0
+  page: 1
+  webform: 1

@@ -1,0 +1,14 @@
+uuid: bbe9c0cd-a8e5-4525-8d4a-359428783f20
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.in_house_lobbyist
+  module:
+    - user
+id: user_add_role_action.in_house_lobbyist
+label: 'Add the In-house lobbyist role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: in_house_lobbyist

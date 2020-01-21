@@ -1,0 +1,21 @@
+uuid: a5af0992-7f1d-4d14-88c8-1ed6f25d2de2
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_first_name_consultant_
+field_name: field_first_name_consultant_
+entity_type: user
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -35,4 +35,16 @@ if (file_exists($local_settings)) {
  * Always install the 'standard' profile to stop the installer from
  * modifying settings.php.
  */
-$settings['install_profile'] = 'standard';
+$settings['install_profile'] = 'wxt';
+$settings['hash_salt'] = 'wXQrYX4euWmxK6pfedj7sBctqzVUpsRKe8VYpC69q4U';
+
+
+$databases['default']['default'] = array(
+  'driver' => 'mysql',
+  'database' => 'bizont_lobbyist',
+  'username' => 'bizont',
+  'password' => 'JFVzmttqea5zcdtXyFhbLBhpWRBUrCng',
+  'host' => 'localhost',
+  'pdo' => array(PDO::ATTR_TIMEOUT => 2.0, PDO::MYSQL_ATTR_COMPRESS => 1),
+);
+ $settings['update_free_access'] = TRUE;

@@ -1,0 +1,27 @@
+url:
+  visibility: 0
+  pages:
+    - 'admin*'
+    - 'imagebrowser*'
+    - 'img_assist*'
+    - 'imce*'
+    - 'node/add/*'
+    - 'node/*/edit'
+    - 'print/*'
+    - 'printpdf/*'
+    - system/ajax
+    - 'system/ajax/*'
+theme:
+  visibility: 1
+  themes:
+    wxt_lobbyist: wxt_lobbyist
+minimized:
+  options: 0
+files:
+  types:
+    css: css
+    js: js
+wxt:
+  theme: theme-wet-boew
+_core:
+  default_config_hash: wySaZOTDOfei02XOFjTh44VOsR2nmpjHgm8Yzro2_WI

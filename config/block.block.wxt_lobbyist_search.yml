@@ -1,0 +1,22 @@
+uuid: 4cf20caf-444f-4f89-86af-912476cbed5d
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - wxt_lobbyist
+_core:
+  default_config_hash: F3d5hyAFunLh4PhGviJF019fHn1Z3_zy5gzsQ0tX1K0
+id: wxt_lobbyist_search
+theme: wxt_lobbyist
+region: branding
+weight: -11
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Search
+  provider: search
+  label_display: visible
+visibility: {  }

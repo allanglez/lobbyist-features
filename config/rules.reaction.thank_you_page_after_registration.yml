@@ -1,0 +1,34 @@
+uuid: 9a20f333-d1d7-4f02-ba9d-4ee63b9dff3b
+langcode: en
+status: true
+dependencies: {  }
+id: thank_you_page_after_registration
+label: 'Thank you page after registration'
+events:
+  -
+    event_name: 'rules_entity_insert:user'
+description: ''
+tags: {  }
+config_version: '3'
+expression:
+  id: rules_rule
+  uuid: 8e13fef4-bdf7-48c3-be90-b7aeb32e8e00
+  conditions:
+    id: rules_and
+    uuid: 0e5f7b74-028b-4bae-8f4c-c84b5f3ad3ff
+    conditions: {  }
+  actions:
+    id: rules_action_set
+    uuid: 80d80b80-0d8f-43cf-a4f5-2d2275e9a465
+    actions:
+      -
+        id: rules_action
+        uuid: ac2eff23-aaaa-43ba-a4a9-23b58b5881ba
+        context_values:
+          url: /thanks-registration
+        context_mapping: {  }
+        context_processors:
+          url:
+            rules_tokens: {  }
+        provides_mapping: {  }
+        action_id: rules_page_redirect

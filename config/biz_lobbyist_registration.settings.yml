@@ -1,0 +1,7 @@
+registration_url_api: 'http://pr-14-lobbyist-frontend.pantheonsite.io/entity/user?_format=json'
+validate_email_url_api: 'http://pr-14-lobbyist-frontend.pantheonsite.io/json/users'
+in_house_lobbyist_welcome_mail: ''
+consultant_lobbyist_welcome_mail: ''
+base_url: 'http://pr-14-lobbyist-frontend.pantheonsite.io/'
+json_path: json/user/
+add_an_in_house_lobbyust_button_text: 'Add aditional in-house lobbyist to the organization'

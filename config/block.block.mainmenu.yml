@@ -1,0 +1,39 @@
+uuid: 36c3b3ab-6404-4388-b6aa-e80679d3263f
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main-menu
+  module:
+    - menu_block
+    - system
+    - wxt_library
+  theme:
+    - wxt_lobbyist
+id: mainmenu
+theme: wxt_lobbyist
+region: navbar
+weight: -9
+provider: null
+plugin: 'menu_block:main-menu'
+settings:
+  id: 'menu_block:main-menu'
+  label: 'Main Menu'
+  provider: menu_block
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand: 0
+  parent: 'main-menu:'
+  suggestion: main_menu
+visibility:
+  panels_title:
+    id: panels_title
+    enabled: 0
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '*'
+    negate: false
+    context_mapping: {  }

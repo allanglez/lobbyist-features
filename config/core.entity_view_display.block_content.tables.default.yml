@@ -1,0 +1,24 @@
+uuid: a7d0eb9d-0366-47ff-bd59-799c5c4d02cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.tables
+    - field.field.block_content.tables.body
+  module:
+    - text
+id: block_content.tables.default
+targetEntityType: block_content
+bundle: tables
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

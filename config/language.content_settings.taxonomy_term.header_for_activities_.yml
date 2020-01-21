@@ -1,0 +1,11 @@
+uuid: c0f79e84-e333-41b4-92ee-02dd57bbeb6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.header_for_activities_
+id: taxonomy_term.header_for_activities_
+target_entity_type_id: taxonomy_term
+target_bundle: header_for_activities_
+default_langcode: site_default
+language_alterable: false

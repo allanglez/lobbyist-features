@@ -1,0 +1,47 @@
+schemas:
+  bootstrap: 8000
+  wxt_bootstrap: 8000
+  wxt_lobbyist: 8000
+modal_jquery_ui_bridge: 0
+_core:
+  default_config_hash: mO7mxem0JY6zvAroR3ebmv8PCghq7rhAHpmoBlTnb9o
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: 'public://favicon.ico'
+  url: 'http://dev-lobbyist-frontend.pantheonsite.io/sites/default/files/favicon-2.ico'
+  use_default: false
+wxt_skip_link_primary_text: 'Skip to main content'
+wxt_skip_link_secondary_text: 'Skip to "About this site"'
+wxt_gcweb_cdn_footer_url: ''
+region_wells:
+  branding: ''
+  navbar: ''
+  navigation: ''
+  search_bar: ''
+  site_alert: ''
+  highlighted: ''
+  header_slider: ''
+  header: ''
+  help: ''
+  inline_arlert: ''
+  content_slider: ''
+  content: ''
+  page_form: ''
+  sidebar: ''
+  sidebar_sticky: ''
+  featured: ''
+  footer_top: ''
+  footer: ''
+cdn_provider: jsdelivr
+logo:
+  path: 'public://Screen Shot 2019-11-01 at 1.18.59 PM_0.png'
+  url: ''
+  use_default: false
+forms_smart_descriptions: 0
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: true
+reset_http_request_cache: ''
+table: ''

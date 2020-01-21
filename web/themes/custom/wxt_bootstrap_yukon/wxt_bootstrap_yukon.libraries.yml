@@ -1,0 +1,15 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+      css/style_yukon.css: {}
+      css/slick-theme.css: {}
+      css/slick.css: {}
+      css/lobbyist-finder.css: {}
+  js:
+    js/wetkit-bootstrap.modules.js: {}
+    js/sticky.min.js: {}
+    js/custom-logic.js: {}
+    js/slick.min.js: {}  
+    js/registration-modal.js: {}
+    js/webforms-helptexts.js: {}

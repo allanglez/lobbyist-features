@@ -1,0 +1,12 @@
+external_db_login_driver: mysql
+external_db_login_host: dbserver.pr-14.1408e6b1-2c9d-41f7-aa9c-d0e0920cba1c.drush.in
+external_db_login_username: pantheon
+_core:
+  default_config_hash: DQHStTSTqM8SI3xdloMLruDido-pHtDd-AZjOgtZsBc
+external_db_login_password: b3b34e757e084e4b89027f58f058197d
+external_db_login_port: '11100'
+external_db_login_database: pantheon
+external_db_login_user_table: users_field_data
+external_db_login_user_email: mail
+external_db_login_user_password: pass
+external_db_login_user_password_encypt: phpass

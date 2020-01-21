@@ -1,0 +1,673 @@
+taxonomies:
+  lobby_s_topics:
+    -
+      vid: lobby_s_topics
+      tid: '1'
+      langcode: en
+      name: 'Aboriginal Relations'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 361f9838-d19a-4971-b108-61827fd05f2c
+    -
+      vid: lobby_s_topics
+      tid: '2'
+      langcode: en
+      name: Agriculture
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 4515b148-d708-4158-811b-bdcaa01dca09
+    -
+      vid: lobby_s_topics
+      tid: '3'
+      langcode: en
+      name: 'Arts and Culture'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 553082b4-291b-41e9-be20-6422a7f95ca4
+    -
+      vid: lobby_s_topics
+      tid: '4'
+      langcode: en
+      name: Budget
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: e23f2cbf-eb88-425f-972a-f7c6fb37c533
+    -
+      vid: lobby_s_topics
+      tid: '5'
+      langcode: en
+      name: 'College / University'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 1e42410e-f436-4f48-ac17-e5a4e0c684e6
+    -
+      vid: lobby_s_topics
+      tid: '6'
+      langcode: en
+      name: Conservation
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 7031e59e-42e5-4f8b-8701-642fcb42c0ca
+    -
+      vid: lobby_s_topics
+      tid: '7'
+      langcode: en
+      name: 'Constitutional Issues'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: b3b1012f-93ff-4ae0-a8c5-5d3325d59c3d
+    -
+      vid: lobby_s_topics
+      tid: '8'
+      langcode: en
+      name: 'Economic Development and Trade'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: ce260354-fd75-4fa9-aa26-724535195d16
+    -
+      vid: lobby_s_topics
+      tid: '9'
+      langcode: en
+      name: Education
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: f56a28e3-1657-45b7-a5a5-0055cf2616ac
+    -
+      vid: lobby_s_topics
+      tid: '10'
+      langcode: en
+      name: 'Employment and Training'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: da43975a-d079-4627-8ee1-09b115ac3a3a
+    -
+      vid: lobby_s_topics
+      tid: '11'
+      langcode: en
+      name: Energy
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 9bee61a1-c38c-4cc1-b5c6-34779a87d8ed
+    -
+      vid: lobby_s_topics
+      tid: '12'
+      langcode: en
+      name: Environment
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 6251a84a-72d7-4e2e-9841-43f8e9d1a614
+    -
+      vid: lobby_s_topics
+      tid: '13'
+      langcode: en
+      name: 'Financial Institutions'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: e57b3c27-59a1-43a7-a711-350e35b05085
+    -
+      vid: lobby_s_topics
+      tid: '14'
+      langcode: en
+      name: Fisheries
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: b6e41e2a-b2a4-4260-8caf-570c200ab638
+    -
+      vid: lobby_s_topics
+      tid: '15'
+      langcode: en
+      name: Forestry
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 5f0be4c1-b4cf-4053-8523-fc0e07ccd4ad
+    -
+      vid: lobby_s_topics
+      tid: '16'
+      langcode: en
+      name: 'Gaming and Lotteries'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 54d89156-f1ee-49fe-8f6f-73d66e26e8a1
+    -
+      vid: lobby_s_topics
+      tid: '17'
+      langcode: en
+      name: 'Government Procurement'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: f9907fe4-b67b-4c9d-8e97-9839595dcd74
+    -
+      vid: lobby_s_topics
+      tid: '18'
+      langcode: en
+      name: Health
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: a9e128e5-dbd2-4834-ad89-a1ddb5d43c73
+    -
+      vid: lobby_s_topics
+      tid: '19'
+      langcode: en
+      name: Highways
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: cbd1f9c1-4a50-4525-a1f4-ba7508360a2e
+    -
+      vid: lobby_s_topics
+      tid: '20'
+      langcode: en
+      name: Hospitals
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 1c962043-aa30-406d-8282-1a253d2bed86
+    -
+      vid: lobby_s_topics
+      tid: '21'
+      langcode: en
+      name: Housing
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: c8f01098-7a35-48d3-9327-f3ef40379f31
+    -
+      vid: lobby_s_topics
+      tid: '22'
+      langcode: en
+      name: 'Hunting or Trapping'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: d17985c4-23a4-4011-8e49-4ffeb533c111
+    -
+      vid: lobby_s_topics
+      tid: '23'
+      langcode: en
+      name: Industry
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: f5979a78-f54c-4723-8548-38765fbd3091
+    -
+      vid: lobby_s_topics
+      tid: '25'
+      langcode: en
+      name: 'Information Technology'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 12bb4f26-b032-4682-ba3d-f206630575de
+    -
+      vid: lobby_s_topics
+      tid: '24'
+      langcode: en
+      name: Infrastructure
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: e200e9fb-9159-41f8-b657-6e598f121f59
+    -
+      vid: lobby_s_topics
+      tid: '26'
+      langcode: en
+      name: Insurance
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: ea6e39db-5ced-4d5c-81ca-37ae2a9a7228
+    -
+      vid: lobby_s_topics
+      tid: '27'
+      langcode: en
+      name: 'Justice and Enforcement'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 6574cd3d-ad46-40fd-ac88-f8b1a1281ec2
+    -
+      vid: lobby_s_topics
+      tid: '28'
+      langcode: en
+      name: Labour
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 70719704-aada-4238-bfbf-ec7ebf4ae2b0
+    -
+      vid: lobby_s_topics
+      tid: '29'
+      langcode: en
+      name: 'Liquor Control'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 74205900-66ed-42bf-bce1-6273af7d1646
+    -
+      vid: lobby_s_topics
+      tid: '30'
+      langcode: en
+      name: Manufacturing
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 6d11f6f3-bd56-4da3-98a0-1c97e767dc68
+    -
+      vid: lobby_s_topics
+      tid: '31'
+      langcode: en
+      name: Mining
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 36472b71-8b11-4a15-b882-8cf2880e2081
+    -
+      vid: lobby_s_topics
+      tid: '32'
+      langcode: en
+      name: Municipalities
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: c02a2465-b5f8-40f7-b6a3-8e074a7e2785
+    -
+      vid: lobby_s_topics
+      tid: '33'
+      langcode: en
+      name: 'Pension and Benefits'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 99c4500d-ce9d-4386-af57-b92ddef4ffbd
+    -
+      vid: lobby_s_topics
+      tid: '34'
+      langcode: en
+      name: 'Privatization and outsourcing'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 64d67f38-1c05-410b-a890-245ad0acbc9c
+    -
+      vid: lobby_s_topics
+      tid: '35'
+      langcode: en
+      name: 'Regional Development'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: de391ce5-351c-43d6-943f-2e9b1ddeb72e
+    -
+      vid: lobby_s_topics
+      tid: '36'
+      langcode: en
+      name: 'Research and Development'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 6cc2e47e-ddd5-491a-a6f7-5cf733eaa896
+    -
+      vid: lobby_s_topics
+      tid: '37'
+      langcode: en
+      name: 'Science and technology'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: cd9a08e6-ee0d-42ae-b5d1-06be5f2d8994
+    -
+      vid: lobby_s_topics
+      tid: '38'
+      langcode: en
+      name: 'Small business'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: ac1336b3-4417-4068-9e79-420715130776
+    -
+      vid: lobby_s_topics
+      tid: '40'
+      langcode: en
+      name: 'Social assistance'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 916cbbd8-0e40-42e6-8e35-eb78d64e7932
+    -
+      vid: lobby_s_topics
+      tid: '39'
+      langcode: en
+      name: 'Sports and recreation'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 6dbfbe87-e022-4645-856c-3ba9544261ff
+    -
+      vid: lobby_s_topics
+      tid: '41'
+      langcode: en
+      name: Taxation
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: aa8b02ca-842e-40e3-82e3-3c0463a67495
+    -
+      vid: lobby_s_topics
+      tid: '42'
+      langcode: en
+      name: Telecommunications
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: efd529ab-aa20-4056-889c-4eb682ae5601
+    -
+      vid: lobby_s_topics
+      tid: '43'
+      langcode: en
+      name: Tourism
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: b90b7e6a-0b2f-4684-9d2c-a67e41405a1d
+    -
+      vid: lobby_s_topics
+      tid: '44'
+      langcode: en
+      name: Transportation
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 9320128b-38a6-4ccc-87e3-7d89a018c0ac
+  lobbyist_s_portfolios:
+    -
+      vid: lobbyist_s_portfolios
+      tid: '56'
+      langcode: en
+      name: 'Deputy Minister of a department or Directorate or the President of a Government of Yukon Corporation'
+      description__value: null
+      description__format: null
+      weight: '4'
+      parent: '0'
+      uuid: 65ae8ad8-20af-4180-b52c-9d11aed36ce5
+    -
+      vid: lobbyist_s_portfolios
+      tid: '57'
+      langcode: en
+      name: 'Deputy Minister of ECO (Stephen Mills)'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '56'
+      uuid: 3f0223b1-86f4-4199-8d51-974ac3f4f609
+    -
+      vid: lobbyist_s_portfolios
+      tid: '58'
+      langcode: en
+      name: 'Deputy Minister of EMR (Paul Moore)'
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '56'
+      uuid: 0cc4e444-5897-43f5-83ad-8a31df011dc0
+    -
+      vid: lobbyist_s_portfolios
+      tid: '54'
+      langcode: en
+      name: ECO
+      description__value: null
+      description__format: null
+      weight: '2'
+      parent: '51'
+      uuid: 831eab98-4826-41d8-bc35-3a6fc0e1df2b
+    -
+      vid: lobbyist_s_portfolios
+      tid: '45'
+      langcode: en
+      name: 'Employee of a Crown Corp'
+      description__value: null
+      description__format: null
+      weight: '8'
+      parent: '0'
+      uuid: 5fcfc9d7-0ba8-4b36-8957-a0d8b65f94fa
+    -
+      vid: lobbyist_s_portfolios
+      tid: '52'
+      langcode: en
+      name: EMR
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '51'
+      uuid: ff6698c4-29a3-4fb6-a6d8-1e50d55f43d6
+    -
+      vid: lobbyist_s_portfolios
+      tid: '53'
+      langcode: en
+      name: Env
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '51'
+      uuid: 67191cf0-8fc8-42e9-b0be-b70303ef5a1f
+    -
+      vid: lobbyist_s_portfolios
+      tid: '55'
+      langcode: en
+      name: FIN
+      description__value: null
+      description__format: null
+      weight: '3'
+      parent: '51'
+      uuid: ef5d2b31-9b33-4b9e-90e5-39a5e76b42f2
+    -
+      vid: lobbyist_s_portfolios
+      tid: '51'
+      langcode: en
+      name: 'Government of Yukon Employee'
+      description__value: null
+      description__format: null
+      weight: '7'
+      parent: '0'
+      uuid: 298d512f-74f8-4a10-b81f-048d4a01786e
+    -
+      vid: lobbyist_s_portfolios
+      tid: '67'
+      langcode: en
+      name: 'Minister of Ec Dev (Ranj Pillai)'
+      description__value: null
+      description__format: null
+      weight: '4'
+      parent: '62'
+      uuid: d7e0118e-605a-4d6f-b9da-3d30126ab629
+    -
+      vid: lobbyist_s_portfolios
+      tid: '65'
+      langcode: en
+      name: 'Minister of ECO (Sandy Silver)'
+      description__value: null
+      description__format: null
+      weight: '2'
+      parent: '62'
+      uuid: 7634f892-c211-4a82-9b73-bbbfcd3b21f7
+    -
+      vid: lobbyist_s_portfolios
+      tid: '66'
+      langcode: en
+      name: 'Minister of EMR (Ranj Pillai)'
+      description__value: null
+      description__format: null
+      weight: '3'
+      parent: '62'
+      uuid: 5ab42077-2210-4e47-8047-abcc4fb29a98
+    -
+      vid: lobbyist_s_portfolios
+      tid: '64'
+      langcode: en
+      name: 'Minister of Finance (Sandy Silver)'
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '62'
+      uuid: 1aada92c-0a77-41c9-b8ac-844053f9f823
+    -
+      vid: lobbyist_s_portfolios
+      tid: '59'
+      langcode: en
+      name: MLA
+      description__value: null
+      description__format: null
+      weight: '3'
+      parent: '0'
+      uuid: 48317526-7cf7-40c6-a67e-0eebd67d86af
+    -
+      vid: lobbyist_s_portfolios
+      tid: '60'
+      langcode: en
+      name: 'MLA Klondike (Sandy Silver)'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '59'
+      uuid: 8dfc385e-89ab-419a-99e0-355f0c8ce583
+    -
+      vid: lobbyist_s_portfolios
+      tid: '61'
+      langcode: en
+      name: 'MLA Porter Creek (Ranj Pillai)'
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '59'
+      uuid: d85188d6-edcd-47d5-9920-be804f37b9c5
+    -
+      vid: lobbyist_s_portfolios
+      tid: '63'
+      langcode: en
+      name: 'Premier (Sandy Silver)'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '62'
+      uuid: cacdec49-7591-43bf-aeff-8d6d33fc38b3
+    -
+      vid: lobbyist_s_portfolios
+      tid: '62'
+      langcode: en
+      name: 'Premier, Minister or Cabinet Staff'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: d1fccf64-7954-4968-9570-76672272188d
+    -
+      vid: lobbyist_s_portfolios
+      tid: '47'
+      langcode: en
+      name: YDC
+      description__value: null
+      description__format: null
+      weight: '1'
+      parent: '45'
+      uuid: 9c52c521-798a-4cfc-a76b-7b2275123bc1
+    -
+      vid: lobbyist_s_portfolios
+      tid: '46'
+      langcode: en
+      name: YEC
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '45'
+      uuid: bce4242d-bbf4-47a4-acc1-02fef6fe497e
+    -
+      vid: lobbyist_s_portfolios
+      tid: '48'
+      langcode: en
+      name: YHC
+      description__value: null
+      description__format: null
+      weight: '2'
+      parent: '45'
+      uuid: 89d930c2-5608-4187-9f80-fe477fb54d7c
+    -
+      vid: lobbyist_s_portfolios
+      tid: '49'
+      langcode: en
+      name: 'Yukon Liquor Corp'
+      description__value: null
+      description__format: null
+      weight: '3'
+      parent: '45'
+      uuid: 0905ee5d-01ba-4fc1-9b12-72033146e5aa
+    -
+      vid: lobbyist_s_portfolios
+      tid: '50'
+      langcode: en
+      name: 'Yukon Lotteries Corp'
+      description__value: null
+      description__format: null
+      weight: '4'
+      parent: '45'
+      uuid: d11ab1bf-663e-4b92-804c-a68ea098ae9f

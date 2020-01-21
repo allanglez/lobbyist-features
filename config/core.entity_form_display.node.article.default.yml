@@ -1,4 +1,4 @@
-uuid: 8eed862f-26df-45b0-ad4e-34ed21d9bfd7
+uuid: 289bbc45-6960-45db-8506-a4dc071efd09
 langcode: en
 status: true
 dependencies:
@@ -58,6 +58,13 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   path:
     type: path

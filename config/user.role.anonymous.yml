@@ -1,4 +1,4 @@
-uuid: b90d53c6-b043-41ab-9aa2-6b6e1f4760d2
+uuid: 89573d84-58b6-4306-914c-8373a64d3e06
 langcode: en
 status: true
 dependencies: {  }
@@ -12,5 +12,10 @@ permissions:
   - 'access comments'
   - 'access content'
   - 'access site-wide contact form'
+  - 'administer rest resources'
+  - 'administer users'
+  - 'restful post user_registration'
+  - 'restful post webform_rest_submit'
   - 'search content'
   - 'use text format restricted_html'
+  - 'view media'

@@ -1,0 +1,8 @@
+uuid: 207932ca-f95d-4521-a164-ed3fbf6b1717
+langcode: en
+status: true
+dependencies: {  }
+name: 'Header for Activities'
+vid: header_for_activities_
+description: ''
+weight: 0

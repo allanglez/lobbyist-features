@@ -1,0 +1,21 @@
+uuid: 3bfac40c-3eb4-4d13-a88b-992baf8a8e49
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_operating_organization
+field_name: field_operating_organization
+entity_type: user
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
