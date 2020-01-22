@@ -157,6 +157,7 @@
             "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
             "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
         },
+        "enable-patching": true,
         "patches": {
             "drupal/wxt_library": {
                 "Error with module": "/web/modules/patch/2988391-views_rest_support.patch"     
