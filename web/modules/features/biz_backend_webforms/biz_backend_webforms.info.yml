@@ -1,0 +1,33 @@
+name: 'Backend webforms'
+type: module
+core: 8.x
+dependencies:
+  - address
+  - block
+  - comment
+  - content_translation
+  - field
+  - image
+  - language
+  - lightning_core
+  - mask
+  - menu_ui
+  - multiple_registration
+  - node
+  - options
+  - path
+  - rdf
+  - rest
+  - serialization
+  - system
+  - taxonomy
+  - telephone
+  - telephone_formatter
+  - text
+  - user
+  - views
+  - webform
+  - webform_views
+  - wxt_library
+core_incompatible: false
+version: 8.x-1.1
