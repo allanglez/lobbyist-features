@@ -1,0 +1,8 @@
+name: Bizont Custom Blocks
+description: Bizont Custom Blocks
+package: Bizont
+type: module
+version: 1.0
+core: 8.x
+dependencies:
+  - drupal:system (>=8.6.0)

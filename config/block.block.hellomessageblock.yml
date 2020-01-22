@@ -10,7 +10,7 @@ dependencies:
 id: hellomessageblock
 theme: wxt_lobbyist
 region: navigation
-weight: -13
+weight: -17
 provider: null
 plugin: hello_msg_block
 settings:

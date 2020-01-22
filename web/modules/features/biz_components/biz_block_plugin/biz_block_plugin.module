@@ -1,0 +1,4 @@
+<?php
+
+require_once __DIR__ . '/includes/biz_block_plugin.theme.inc';
+

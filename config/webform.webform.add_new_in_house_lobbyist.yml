@@ -8,11 +8,11 @@ weight: 0
 uid: 1
 template: false
 archive: false
-id: add_an_in_house_lobbyust_to_your
+id: add_new_in_house_lobbyist
 title: 'Add an in-house lobbyist to your organization'
-description: "In-House lobbyist lobby on behalf of an organization as an emproyee, CEO, partner, exective director, board member, etc.&nbsp;<br />\r\n<br />\r\nClick here for definition of in-house lobbyist."
+description: "In-House lobbyist lobby on behalf of an organization as an employee, CEO, partner, executive director, board member, etc.&nbsp;<br />\n<br />\nClick here for definition of in-house lobbyist.\n"
 category: ''
-elements: "update_organization_action:\n  '#type': processed_text\n  '#format': full_html\norganization_header:\n  '#type': processed_text\n  '#format': full_html\ngeneral_container:\n  '#type': fieldset\n  '#title': 'general container'\n  '#title_display': invisible\n  '#description_display': invisible\n  processed_text:\n    '#type': processed_text\n    '#text': |\n      <p>In-House lobbyist lobby on behalf of an organization as an emproyee, CEO, partner, exective director, board member, etc.&nbsp;</p>\n      \n      <p><a href=\"&lt;front&gt;\">Click here for definition of in-house lobbyist.</a></p>\n      \n    '#format': basic_html\n  processed_text_01:\n    '#type': processed_text\n    '#text': |\n      <p>In-house lobbyist information</p>\n      \n    '#format': basic_html\n  first_name:\n    '#type': textfield\n    '#title': 'First name'\n    '#required': true\n  last_name:\n    '#type': textfield\n    '#title': 'Last name'\n    '#required': true\n  position:\n    '#type': textfield\n    '#title': Position\n    '#required': true\n  contact_information:\n    '#type': processed_text\n    '#text': |\n      <p>Contact information</p>\n      \n    '#format': basic_html\n  e_mail_address:\n    '#type': webform_email_confirm\n    '#title': 'E-mail address'\n    '#description_display': after\n    '#format': value\n    '#confirm__title': 'Confirm your email address'\n    '#confirm__description': 'A confirmation message will be sent to this e-mail address once your account is created.'\n  telephone:\n    '#type': textfield\n    '#title': Telephone\n    '#input_mask': '(999) 999-9999'\n    '#format_items': comma\n    '#international_preferred_countries': {  }\n    '#telephone_validation_format': '0'\n    '#telephone_validation_countries':\n      - CA\n  status:\n    '#type': select\n    '#title': Status\n    '#options':\n      active: Active\n      blocked: Blocked\n    '#default_value': active\n    '#wrapper_attributes':\n      class:\n        - no-display\n  deleted:\n    '#type': select\n    '#title': deleted\n    '#options':\n      'false': 'false'\n      'true': 'true'\n    '#empty_option': 'false'\n    '#empty_value': 'false'\n    '#default_value': 'false'\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': Finish\n  '#submit__attributes':\n    class:\n      - 'purple-button hidden'\n  '#preview_prev__label': 'Edit details'\n  '#preview_next__label': 'Continue to next step'\nuser_uid:\n  '#type': hidden\n  '#title': user_uid"
+elements: "update_organization_action:\n  '#type': processed_text\n  '#format': full_html\norganization_header:\n  '#type': processed_text\n  '#format': full_html\ngeneral_container:\n  '#type': fieldset\n  '#title': 'general container'\n  '#title_display': invisible\n  '#description_display': invisible\n  processed_text:\n    '#type': processed_text\n    '#text': |\n      <p>In-House lobbyist lobby on behalf of an organization as an emproyee, CEO, partner, exective director, board member, etc.&nbsp;</p>\n      \n      <p><a href=\"&lt;front&gt;\">Click here for definition of in-house lobbyist.</a></p>\n      \n    '#format': basic_html\n  processed_text_01:\n    '#type': processed_text\n    '#text': |\n      <p>In-house lobbyist information</p>\n      \n    '#format': basic_html\n  first_name:\n    '#type': textfield\n    '#title': 'First name'\n    '#required': true\n  last_name:\n    '#type': textfield\n    '#title': 'Last name'\n    '#required': true\n  position:\n    '#type': textfield\n    '#title': Position\n    '#required': true\n  contact_information:\n    '#type': processed_text\n    '#text': |\n      <p>Contact information</p>\n      \n    '#format': basic_html\n  e_mail_address:\n    '#type': webform_email_confirm\n    '#title': 'E-mail address'\n    '#description_display': after\n    '#format': value\n    '#confirm__title': 'Confirm your email address'\n    '#confirm__description': 'A confirmation message will be sent to this e-mail address once your account is created.'\n  telephone:\n    '#type': textfield\n    '#title': Telephone\n    '#input_mask': '(999) 999-9999'\n    '#format_items': comma\n    '#international_preferred_countries': {  }\n    '#telephone_validation_format': '0'\n    '#telephone_validation_countries':\n      - CA\n  status:\n    '#type': select\n    '#title': Status\n    '#options':\n      active: Active\n      blocked: Blocked\n    '#default_value': active\n    '#wrapper_attributes':\n      class:\n        - no-display\n  deleted:\n    '#type': select\n    '#title': deleted\n    '#options':\n      'false': 'false'\n      'true': 'true'\n    '#empty_option': 'false'\n    '#empty_value': 'false'\n    '#default_value': 'false'\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': Finish\n  '#submit__attributes':\n    class:\n      - 'purple-button hidden'\n  '#preview_prev__label': 'Edit details'\n  '#preview_next__label': 'Continue to next step'\nuser_uid:\n  '#type': hidden\n  '#title': user_uid\n"
 css: ''
 javascript: ''
 settings:
@@ -22,8 +22,8 @@ settings:
   ajax_effect: ''
   ajax_speed: null
   page: true
-  page_submit_path: /in-house-account-home/add_an_in_house_lobbyust_to_your
-  page_confirm_path: /in-house-account-home/add_an_in_house_lobbyust_to_your
+  page_submit_path: /in-house-account-home/add_an_in_house_lobbyist_to_your
+  page_confirm_path: /in-house-account-home/add_an_in_house_lobbyist_to_your
   page_admin_theme: false
   form_title: source_entity_webform
   form_submit_once: false
@@ -102,7 +102,7 @@ settings:
   confirmation_type: url_message
   confirmation_title: ''
   confirmation_message: "The lobbyist has been saved in your organization.<br />\r\n<br />\r\n&nbsp;"
-  confirmation_url: /in-house-account-home
+  confirmation_url: '/in-house-account-home?qt-account_home=1'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''

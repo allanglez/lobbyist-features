@@ -1,0 +1,4 @@
+attributes:
+  class:
+    label: ''
+    description: 'set class for menu link'
