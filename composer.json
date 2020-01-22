@@ -78,7 +78,6 @@
         "drupal/webform_mass_email": "^1.0",
         "drupal/webform_rest": "2.x-dev",
         "drupal/wxt_bootstrap": "^1.15",
-        "drupal/wxt_library": "^1.10",
         "drush-ops/behat-drush-endpoint": "^9.3",
         "drush/drush": "~8.3",
         "giggsey/libphonenumber-for-php": "^8.10",
