@@ -1,7 +1,7 @@
-diff --git a/web/modules/custom/wxt_library/composer.json b/web/modules/custom/wxt_library/composer.json
+diff --git a/web/modules/contrib/wxt_library/composer.json b/web/modules/contrib/wxt_library/composer.json
 index b1bc873..a7652d3 100644
---- a/web/modules/custom/wxt_library/composer.json
-+++ b/web/modules/custom/wxt_library/composer.json
+--- a/web/modules/contrib/wxt_library/composer.json
++++ b/web/modules/contrib/wxt_library/composer.json
 @@ -17,12 +17,12 @@
          "composer/installers": "^1.2",
          "cweagans/composer-patches": "^1.6.0",
@@ -18,10 +18,10 @@ index b1bc873..a7652d3 100644
          "wet-boew/theme-gcweb-legacy": "4.0.29",
          "wet-boew/theme-ogpl": "4.0.27"
      },
-diff --git a/web/modules/custom/wxt_library/src/Form/SearchApiBlockForm.php b/web/modules/custom/wxt_library/src/Form/SearchApiBlockForm.php
+diff --git a/web/modules/contrib/wxt_library/src/Form/SearchApiBlockForm.php b/web/modules/contrib/wxt_library/src/Form/SearchApiBlockForm.php
 index ef6afb8..b99a717 100644
---- a/web/modules/custom/wxt_library/src/Form/SearchApiBlockForm.php
-+++ b/web/modules/custom/wxt_library/src/Form/SearchApiBlockForm.php
+--- a/web/modules/contrib/wxt_library/src/Form/SearchApiBlockForm.php
++++ b/web/modules/contrib/wxt_library/src/Form/SearchApiBlockForm.php
 @@ -98,21 +98,14 @@ class SearchApiBlockForm extends FormBase {
        ],
      ];
@@ -46,10 +46,10 @@ index ef6afb8..b99a717 100644
        $form['keys']['#placeholder'] = $this->t('Search website');
        $wxt_gcweb_search = Bootstrap::getTheme()->getSetting('wxt_gcweb_search');
        if (!empty($wxt_gcweb_search)) {
-diff --git a/web/modules/custom/wxt_library/src/Form/SearchBlockForm.php b/web/modules/custom/wxt_library/src/Form/SearchBlockForm.php
+diff --git a/web/modules/contrib/wxt_library/src/Form/SearchBlockForm.php b/web/modules/contrib/wxt_library/src/Form/SearchBlockForm.php
 index 6576eb4..a1b0df9 100644
---- a/web/modules/custom/wxt_library/src/Form/SearchBlockForm.php
-+++ b/web/modules/custom/wxt_library/src/Form/SearchBlockForm.php
+--- a/web/modules/contrib/wxt_library/src/Form/SearchBlockForm.php
++++ b/web/modules/contrib/wxt_library/src/Form/SearchBlockForm.php
 @@ -123,21 +123,14 @@ class SearchBlockForm extends FormBase {
        ],
      ];
@@ -74,10 +74,10 @@ index 6576eb4..a1b0df9 100644
        $form['keys']['#placeholder'] = $this->t('Search website');
        $wxt_gcweb_search = Bootstrap::getTheme()->getSetting('wxt_gcweb_search');
        if (!empty($wxt_gcweb_search)) {
-diff --git a/web/modules/custom/wxt_library/src/Plugin/Block/LanguageBlock.php b/web/modules/custom/wxt_library/src/Plugin/Block/LanguageBlock.php
+diff --git a/web/modules/contrib/wxt_library/src/Plugin/Block/LanguageBlock.php b/web/modules/contrib/wxt_library/src/Plugin/Block/LanguageBlock.php
 index 1fdf1ac..166c00f 100644
---- a/web/modules/custom/wxt_library/src/Plugin/Block/LanguageBlock.php
-+++ b/web/modules/custom/wxt_library/src/Plugin/Block/LanguageBlock.php
+--- a/web/modules/contrib/wxt_library/src/Plugin/Block/LanguageBlock.php
++++ b/web/modules/contrib/wxt_library/src/Plugin/Block/LanguageBlock.php
 @@ -138,25 +138,24 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
      }
  
@@ -117,10 +117,10 @@ index 1fdf1ac..166c00f 100644
        $build = [
          '#theme' => 'links__language_block__' . $wxt_active,
          '#links' => $links->links,
-diff --git a/web/modules/custom/wxt_library/src/Plugin/Condition/PanelsTitle.php b/web/modules/custom/wxt_library/src/Plugin/Condition/PanelsTitle.php
+diff --git a/web/modules/contrib/wxt_library/src/Plugin/Condition/PanelsTitle.php b/web/modules/contrib/wxt_library/src/Plugin/Condition/PanelsTitle.php
 index 755771f..d727466 100644
---- a/web/modules/custom/wxt_library/src/Plugin/Condition/PanelsTitle.php
-+++ b/web/modules/custom/wxt_library/src/Plugin/Condition/PanelsTitle.php
+--- a/web/modules/contrib/wxt_library/src/Plugin/Condition/PanelsTitle.php
++++ b/web/modules/contrib/wxt_library/src/Plugin/Condition/PanelsTitle.php
 @@ -3,19 +3,17 @@
  namespace Drupal\wxt_library\Plugin\Condition;
  
@@ -234,10 +234,10 @@ index 755771f..d727466 100644
                  return FALSE;
                }
              }
-diff --git a/web/modules/custom/wxt_library/wxt_library.info.yml b/web/modules/custom/wxt_library/wxt_library.info.yml
+diff --git a/web/modules/contrib/wxt_library/wxt_library.info.yml b/web/modules/contrib/wxt_library/wxt_library.info.yml
 index bfaf1a8..900004e 100644
---- a/web/modules/custom/wxt_library/wxt_library.info.yml
-+++ b/web/modules/custom/wxt_library/wxt_library.info.yml
+--- a/web/modules/contrib/wxt_library/wxt_library.info.yml
++++ b/web/modules/contrib/wxt_library/wxt_library.info.yml
 @@ -1,7 +1,7 @@
  name: 'WxT Library'
  description: 'Registers WxT Boostrap as a library.'
@@ -259,10 +259,10 @@ index bfaf1a8..900004e 100644
  project: 'wxt_library'
 -datestamp: 1575231803
 +datestamp: 1552606693
-diff --git a/web/modules/custom/wxt_library/wxt_library.make b/web/modules/custom/wxt_library/wxt_library.make
+diff --git a/web/modules/contrib/wxt_library/wxt_library.make b/web/modules/contrib/wxt_library/wxt_library.make
 index fb93133..7d8048d 100644
---- a/web/modules/custom/wxt_library/wxt_library.make
-+++ b/web/modules/custom/wxt_library/wxt_library.make
+--- a/web/modules/contrib/wxt_library/wxt_library.make
++++ b/web/modules/contrib/wxt_library/wxt_library.make
 @@ -6,11 +6,11 @@ api = 2
  ; Libraries for the Web Experience Toolkit jQuery Framework
  
@@ -286,10 +286,10 @@ index fb93133..7d8048d 100644
  libraries[theme-gcweb][destination] = ../../libraries
  
  libraries[theme-ogpl][download][type] = get
-diff --git a/web/modules/custom/wxt_library/wxt_library.module b/web/modules/custom/wxt_library/wxt_library.module
+diff --git a/web/modules/contrib/wxt_library/wxt_library.module b/web/modules/contrib/wxt_library/wxt_library.module
 index 4d3eb5c..5acb59c 100644
---- a/web/modules/custom/wxt_library/wxt_library.module
-+++ b/web/modules/custom/wxt_library/wxt_library.module
+--- a/web/modules/contrib/wxt_library/wxt_library.module
++++ b/web/modules/contrib/wxt_library/wxt_library.module
 @@ -85,7 +85,7 @@ function wxt_library_page_attachments(array &$page) {
                '#noscript' => TRUE,
                '#attributes' => [
