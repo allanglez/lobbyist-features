@@ -90,8 +90,8 @@
         "drupal/typed_data": "^1.0",
         "drupal/core": "^8.6.15",
         "webflo/drupal-core-strict": "^8.6.15",
-        "drupal/rules": "^3.0"
-
+        "drupal/menu_link_attributes": "^1.0",
+        "drupal/yaml_editor": "^1.0"
     },
     "require-dev": {
         "behat/behat": "3.*",
