@@ -1,0 +1,10 @@
+name: Hierarchical Multiselect
+type: module
+description: 'Js code to select Hierarchy of a Multiselect.'
+configure: hierarchical_multi_select.config
+# core: 8.x
+# Information added by Drupal.org packaging script on 2019-07-16
+version: '8.x-1.5'
+core: '8.x'
+project: 'hierarchical_multi_select'
+datestamp: 1563286701
