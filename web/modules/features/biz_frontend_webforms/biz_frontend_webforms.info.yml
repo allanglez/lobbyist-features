@@ -1,0 +1,20 @@
+name: 'Frontend webforms'
+type: module
+core: 8.x
+dependencies:
+  - comment
+  - content_translation
+  - field
+  - image
+  - language
+  - multiple_registration
+  - node
+  - nodeaccess
+  - path
+  - rdf
+  - taxonomy
+  - text
+  - user
+  - webform
+version: 8.x-1.0
+core_incompatible: false
