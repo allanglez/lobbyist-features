@@ -1069,7 +1069,7 @@ table.table-purple-header > caption{
   #wb-bnr{
     background-color: #481747 !important;
   }
-  #wb-sec > div > ul{
+  #wb-sec > div > ul.menu.nav.account{
     flex-direction: column-reverse;
     align-items: center;
   }
@@ -1103,7 +1103,7 @@ table.table-purple-header > caption{
     border: 0px;
     width: fit-content;
   }
-  #wb-sec > ul li:nth-child(1){
+  #wb-sec > ul li .custom-login{
     height: 30px;	
     width: 82px;	
     border-radius: 3px;	
@@ -1111,12 +1111,11 @@ table.table-purple-header > caption{
     display: flex;
     align-items: center;
   }
-  #wb-sec > ul li:nth-child(2)> a{
-  }
+
   #wb-sec > ul li{
     margin-left: 21px;
   }
-  #wb-sec > ul li:last-child{
+  #wb-sec > ul li .public-menu{
     margin-left: 0px;
   }
   #block-languageswitcher-2 .mrgn-tp-lg{
@@ -1503,13 +1502,13 @@ table.table-purple-header > caption{
 
 /*HOME  ->  body.home*/
 /**Home Main-Menu**/
-#wb-sec > div > ul li:nth-child(2){
+#wb-sec > div > ul li .custom-log-out{
   display: none;
 }
-.user-logged-in #wb-sec > div > ul li:nth-child(1){
+.user-logged-in #wb-sec > div > ul li .custom-login{
   display: none;
 }
-.user-logged-in #wb-sec > div > ul li:nth-child(2){
+.user-logged-in #wb-sec > div > ul li .custom-log-out{
   display: flex;
 }
 
@@ -1529,10 +1528,12 @@ table.table-purple-header > caption{
 
 /*HOME  ->  body.home*/
 /**Home Main-Menu**/
-.user-logged-in #menuToggle > ul > li:nth-child(4) > a,
-.user-logged-in #menuToggle > ul > li:nth-child(3) > a{
+
+.user-logged-in #menuToggle > ul li  a.register-in-house,
+.user-logged-in #menuToggle > ul  li  a.register-consultant{
     display: none;
 }
+
 #block-hellomessageblock a{
   color: #FFFFFF;
   font-family: 'Open Sans', sans-serif;
@@ -2565,11 +2566,11 @@ a.purple-button:hover{
     background-color: transparent;
     border: 0px;
   }
-  #wb-sec > div > ul a{
+  #wb-sec > div > ul.menu.nav.account > li> a{
     width: 82px;
   }
-  #wb-sec > div > ul li:nth-child(1) > a,
-  #wb-sec > div > ul li:nth-child(2) > a{
+  #wb-sec > div > ul li > a.custom-login,
+  #wb-sec > div > ul li > a.custom-log-out{
     color: #FFFFFF;	
     font-family: 'Open Sans', sans-serif;
     font-family: Verdana;
@@ -2577,30 +2578,35 @@ a.purple-button:hover{
     font-weight: bold;	
     line-height: 15px;
   }
-  #wb-sec > div > ul li:nth-child(1),
-  #wb-sec > div > ul li:nth-child(2){
+  #wb-sec > div > ul li .custom-login,
+  #wb-sec > div > ul li .custom-log-out{
     height: 30px;	
     width: 82px;	
     border-radius: 3px;	
     background-color: #DC971A;
     display: flex;
+    justify-content: center;
     align-items: center;
   }
-  #wb-sec > div > ul li:nth-child(2){
+  #wb-sec > div > ul.menu.nav.account > li{
+    display: flex;
+    align-items: center;
+  }
+  #wb-sec > div > ul li .custom-log-out{
     display: none;
   }
-  .user-logged-in #wb-sec > div > ul li:nth-child(1){
+  .user-logged-in #wb-sec > div > ul li .custom-login{
     display: none;
   }
-  .user-logged-in #wb-sec > div > ul li:nth-child(2){
+  .user-logged-in #wb-sec > div > ul li .custom-log-out{
     display: flex;
   }
-  #wb-sec > div > ul li:nth-child(2)> a{
+  #wb-sec > div > ul li > a.custom-log-out{
   }
-  #wb-sec > div > ul li{
+  #wb-sec > div > ul.menu.nav.account > li{
     margin-left: 21px;
   }
-  #wb-sec > div > ul li:last-child{
+  #wb-sec > div > ul li .public-menu{
     margin-left: 0px;
   }
   #block-languageswitcher-2 .mrgn-tp-lg{
@@ -3368,4 +3374,32 @@ a.purple-button:hover{
 .consultant-activity-detail h1,
 .in-house-activity-detail h1{
   display: none;
+}
+
+.page_header h1{
+	color: #dc9839 !important;	
+}
+ul.dropdown-menu{
+  background-color: #7C5E7A;
+  min-width: 140px;
+}
+ul.dropdown-menu li{
+  margin: 7px 0px 0px 0px;
+}
+#wb-sec ul.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  white-space: nowrap;
+  color: #FFFFFF;	
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;	
+  line-height: 20px;
+  font-weight: 500;
+  border: 0px;
+  height: 28px;
+  text-align: left;
+}
+#wb-sec ul.dropdown-menu > li > a:hover{
+  background-color: #DC971A;
 }
