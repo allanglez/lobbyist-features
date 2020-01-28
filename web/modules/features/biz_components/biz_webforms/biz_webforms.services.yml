@@ -1,6 +1,0 @@
-services:
-  biz_webforms.event_subscriber:
-    class: Drupal\biz_webforms\EventSubscriber\BizWebformsSubscriber
-    tags: 
-      - {name: event_subscriber}
-  
