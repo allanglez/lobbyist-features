@@ -1,5 +1,4 @@
 jQuery(document).ready(function($){
-  console.log("HOLA");
   $('.yukon-department-sections__expand').on('click', function(e) {
     $('.panel-collapse:not(".in")').collapse('show');
   });

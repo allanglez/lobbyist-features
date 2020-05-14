@@ -1,56 +1,133 @@
-jQuery(document).ready(function($){
-  if ($(".webform-submission-data--view-mode-preview")[0]){
-    $("body.page-node-type-webform").addClass("previewing-webform");
-    $(".previewing-webform #wb-cont").append("<span class='preview-steps-span'>Step 2 of 2</span>");
-      //$( "#edit-actions-preview-prev" ).prepend( "<p>Test</p>");
-    var div =  document.createElement("div");
-    div.id = "checkbox-container-preview";
-    var input = document.createElement("input");
-    input.type = "checkbox";
-    input.id = "confirm-checkbox";
-    var label = document.createElement('label')
-    label.htmlFor = "confirm-checkbox";
-    label.appendChild(document.createTextNode('I confirm that the information I’m about to submit is accurate and I am legally permitted to do so.'));
-    input.appendChild(label);
-    div.appendChild(input);
-    div.appendChild(label);
-    var a2 = document.getElementById('wb-cont');
-    $("<div id='preview-header-container'><label>These are all the details of your submission. If you want to make changes click the edit details button below. If you are happy with what’s here, chose finish and go to payment.</label></div>").insertAfter(a2);
-    var y = document.getElementsByClassName('webform-button--submit');
-    var a = y[0];
-    a.parentNode.insertBefore(div,a);
-  $('#confirm-checkbox:checkbox').click(function() {
-    var $checkbox = $(this), checked = $checkbox.is(':checked');
-    $checkbox.closest('#confirm-checkbox').find(':checkbox').prop('disabled', checked);
-    if(checked){
-        $('.webform-button--submit').removeClass('hidden');
-    }else{
-        $('.webform-button--submit').addClass('hidden');
-    }  
-    $checkbox.prop('disabled', false);
-    }); 
-  } else {
-    $("body.page-node-type-webform").removeClass("previewing-webform");
-  } 	
-  if ($("#edit-submit-search-activity")[0]){
-    $("#edit-submit-search-activity").removeClass('btn');   
-  }
-  //DashboardsSettingsForm
-  //biz_block_plugin
+(function ($, Drupal) {
+    var base_url = '{{base_url}}' ? '{{base_url}}' : '' ;
+    var varsToPatch;
+	var sid, webformId, flagToModify, uid;
 
-  (function ($, Drupal, drupalSettings) {
-      /**
-       * @namespace
-       */
-       console.log( Drupal.behaviors.biz_block_plugin);
-/*
-      Drupal.behaviors.DashboardsSettingsForm = {
-        attach: function (context) {
-          var data = DashboardsSettingsForm;
+    Drupal.behaviors.webformReviw = {
+        attach: function (context, settings) {
+            
+            //Display step number in the top
+            $('.webform-progress', context).once('webformSteps').each(function () {
+                $(".webform-progress").css("display", "none");
+                if( $('.webform-submission-data--view-mode-preview').length > 0){
+                     var steps = $(".webform-progress").html();
+                     $("#wb-cont").append(steps);
+                }
+            });
+
+            //Display confirm checkbox in the preview page and check if is checked or not for enabling the submit button
+            $('.webform-submission-data--view-mode-preview', context).once('webformReviw').each(function () {
+                $(".previewing-webform #wb-cont").css("display", "none");
+                $('#edit-actions-submit').attr('disabled','true');
+                $("body.page-node-type-webform").addClass("previewing-webform");
+    
+                $('#confirm-checkbox:checkbox').click(function() {
+                    var $checkbox = $(this), checked = $checkbox.is(':checked');
+                    $checkbox.closest('#confirm-checkbox').find(':checkbox').prop('disabled', checked);
+                    if(checked){
+                        $('#edit-actions-submit').removeAttr('disabled');
+                    }else{
+                        $('#edit-actions-submit').attr('disabled','true');
+                    }    
+                    $checkbox.prop('disabled', false);
+                }); 
+            });
+
+            //Move edit button to the top and assign event for go to prev page
+            $('#preview-header-container', context).once('webformEditDetails').each(function () {
+                var edit_button = 	 $('#edit-actions-preview-prev').html();	
+                $('<div id="preview-header-edit"><button class="webform-button--previous button js-form-submit form-submit btn-default btn icon-before" id="custom-edit-actions-preview" name="op">'+edit_button+'</button><div>').insertBefore(document.getElementsByClassName('custom-webform-preview'));
+                
+                $('#custom-edit-actions-preview').click(function(){
+                    $('#edit-actions-preview-prev').click();
+                });
+                $('#edit-actions-preview-prev').css("display", "none");
+            }); 
+
+            $('#edit-submit-search-activity', context).once('webformSubmitSearchbtn').each(function () {     		
+                $("#edit-submit-search-activity").removeClass('btn');	
+            });
+
+        } 
+    };
+    
+    Drupal.behaviors.userForm = {
+        attach: function (context, settings) {
+            //Force to change the characters to uppercase in the postal code input
+            $('.postal-code.form-text', context).once('uppercasePostalCode').each(function () {
+        		$('input.postal-code').keypress(forceUppercase);
+            });
         }
-      };
-*/
-  })(jQuery, Drupal, drupalSettings);
+    };
 
+    Drupal.behaviors.webformFeedback = {
+        attach: function (context, settings) {
+            //This function changes the icon color when it was click
+            $('#edit-was-this-page-helpful-yes,#edit-was-this-page-helpful-yes', context).once('webformHands').each(function () {     
+                $("#edit-was-this-page-helpful-yes").click(function(){
+                    $("label[for='edit-was-this-page-helpful-yes']").css('color','#DC971A');
+                    $("label[for='edit-was-this-page-helpful-no']").css('color','#b2b3b2');
+                });
+                $("#edit-was-this-page-helpful-no").click(function(){
+                    $("label[for='edit-was-this-page-helpful-yes']").css('color','#b2b3b2');
+                    $("label[for='edit-was-this-page-helpful-no']").css('color','#DC971A');
+                });
+            });
+        } 
+    };
 
-});
+    Drupal.behaviors.webformLobbyist = {
+        attach: function (context, settings) {
+            
+            //Show/hide input if the "Other" option is selected/unselected this only is happens when input is created
+            $('.form-item-other', context).once('selectOther').each(function () {
+                $('.form-item-other').css("display", "none");
+                var values = $('#edit-which-topic-do-you-want-to-lobby-government-about-').find(':selected');
+                $.each( values, function( key, value ) {
+                    if(value.text == 'Other'){
+                        $('.form-item-other').css("display", "block");
+                    }
+                });
+            });
+
+            //Show/hide input if the "Other" option is selected/unselected
+            $('#edit-which-topic-do-you-want-to-lobby-government-about-', context).once('selectOther').each(function () {
+                $('#edit-which-topic-do-you-want-to-lobby-government-about-').on("select2:select", function (e) {    
+                     var data = e.params.data;
+                     if(data.text == 'Other'){
+                        $('#edit-other').val('');
+                        $('.form-item-other').css("display", "block");
+                     }
+                });
+                $('#edit-which-topic-do-you-want-to-lobby-government-about-').on("select2:unselect", function (e) {    
+                     var data = e.params.data;
+                     if(data.text == 'Other'){
+                            $('.form-item-other').css("display", "none");
+                     }
+                });
+            });
+            
+            //Replace the "br" tags with correct line break
+            $('#edit-add-detail', context).once('addDetails').each(function () {             
+                var str =$('#edit-add-detail').val().split("<br />").join("\n");
+                $('#edit-add-detail').val(str);
+            });
+        }
+    };
+    
+    //Change the character lowercase to uppercase
+    function forceUppercase(e){
+        var charInput = e.keyCode;
+        if((charInput >= 97) && (charInput <= 122)) { // lowercase
+            if(!e.ctrlKey && !e.metaKey && !e.altKey) { // no modifier key
+                var newChar = charInput - 32;
+                var start = e.target.selectionStart;
+                var end = e.target.selectionEnd;
+                e.target.value = e.target.value.substring(0, start) + String.fromCharCode(newChar) + e.target.value.substring(end);
+                e.target.setSelectionRange(start+1, start+1);
+                e.preventDefault();
+            }
+        }
+    }
+
+})(jQuery, Drupal);

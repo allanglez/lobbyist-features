@@ -12,6 +12,13 @@ biz_block_plugin.consultant_activity:
     _title: 'Consultant activity'
   requirements:
     _permission: 'administer site configuration'
+biz_block_plugin.in_house_activity:
+  path: '/biz_block_plugin/in_house_activity'
+  defaults:
+    _controller: '\Drupal\biz_block_plugin\Controller\BizBlockPluginController::inHouseActivityContent'
+    _title: 'In House activity'
+  requirements:
+    _permission: 'administer site configuration'
 biz_block_plugin.custom_table:
   path: '/biz_block_plugin/custom_table'
   defaults:

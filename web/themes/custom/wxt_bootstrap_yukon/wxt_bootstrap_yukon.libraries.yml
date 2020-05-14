@@ -10,6 +10,4 @@ global-styling:
     js/wetkit-bootstrap.modules.js: {}
     js/sticky.min.js: {}
     js/custom-logic.js: {}
-    js/slick.min.js: {}  
-    js/registration-modal.js: {}
-    js/webforms-helptexts.js: {}
+    js/slick.min.js: {}
