@@ -1,0 +1,272 @@
+<?php
+
+/**
+ * @file
+ * Contains rest_register_verify_email.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Render\PlainTextOutput;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+/**
+ * @defgroup rest_register_verify_email REST Register User with Email Verification
+ * @{
+ * Examples using Drupal 8's built-in JavaScript.
+ *
+ * We have two examples here.
+ *
+ * One 'weights' content and then sorts it by weight. This demonstrates
+ * attaching JavaScript through Drupal's render arrays.
+ *
+ * The other demonstrates adding an accordion effect to content, through
+ * Drupal's theme layer.
+ */
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function rest_register_verify_email_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'restui' && !empty($form['resource_id']['#value']) && $form['resource_id']['#value'] === 'register_verify_email_resource') {
+    unset($form['wrapper']['settings']['authentication']['#options']);
+    $form['wrapper']['settings']['authentication']['#options'] = ['Na' => 'Na - please check this else rest ui will cry'];
+    $form['Extra'] = [
+      '#markup' => '<h2>How to Use:</h2> <p>Post "mail" and "pass" to endpoint. optional add "lang" for language of email.</p> <p>Also When You save this please clear all your drupal cache</p>',
+    ];
+    $form['Extra1'] = [
+      '#markup' => '<p>The User will get an email from admin account settings ... you then need to post this "temp_token" (with "mail") to "/rest/verify-account?_format=json" to activate the user account. </p>',
+    ];
+  }
+
+  if ($form_id === 'restui' && !empty($form['resource_id']['#value']) && $form['resource_id']['#value'] === 'register_verify_email_token') {
+    unset($form['wrapper']['settings']['authentication']['#options']);
+    $form['wrapper']['settings']['authentication']['#options'] = ['Na' => 'Na - please check this else rest ui will cry'];
+    $form['Extra'] = [
+      '#markup' => 'Once You have gotten your temp token (via email) you can then post {"name":"EMAIL_USERNAME", "temp_token":"THETEMPTOKEN"} to this endpoint to make user active, then ready for re-login',
+    ];
+  }
+
+  if ($form_id === 'user_admin_settings') {
+    $config_factory = \Drupal::configFactory();
+    $config = $config_factory->getEditable('user.mail');
+    $check = $config->get('email_verify_register_rest');
+    if (!empty($check)) {
+      //dump($form);
+      $form['email_verify_register_rest'] = [
+        '#type' => 'details',
+        '#title' => t('Rest Verify Email Token'),
+        '#description' => t('Edit the email message sent to users who register via Rest endpoint.'),
+        '#group' => 'email',
+        '#weight' => 10,
+      ];
+      $form['email_verify_register_rest']['user_mail_email_verify_register_rest_subject'] = [
+        '#type' => 'textfield',
+        '#title' => t('Subject'),
+        '#default_value' => $config->get('email_verify_register_rest.subject'),
+        '#maxlength' => 180,
+      ];
+      $form['email_verify_register_rest']['user_mail_email_verify_register_rest_body'] = [
+        '#type' => 'textarea',
+        '#title' => t('Body'),
+        '#default_value' => $config->get('email_verify_register_rest.body'),
+        '#rows' => 12,
+        '#description' => t('Use [user:rest-register-temp-token]. as it is a custom "token" and only work in this email.'),
+      ];
+      $form['#submit'][] = 'rest_register_verify_email_user_settings_form_submit';
+    }
+  }
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function rest_register_verify_email_user_settings_form_submit(array &$form, FormStateInterface $form_state) {
+  // Save configs.
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('user.mail');
+  $config->set('email_verify_register_rest.body', $form_state->getValue('user_mail_email_verify_register_rest_body'));
+  $config->set('email_verify_register_rest.subject', $form_state->getValue('user_mail_email_verify_register_rest_subject'));
+  $config->save(TRUE);
+}
+
+/**
+ * Implements hook_mail().
+ */
+function rest_register_verify_email_mail($key, &$message, $params) {
+  $token_service = \Drupal::token();
+  $language_manager = \Drupal::languageManager();
+  $langcode = $message['langcode'];
+  $variables = ['user' => $params['account']];
+
+  $language = $language_manager->getLanguage($params['account']->getPreferredLangcode());
+  $original_language = $language_manager->getConfigOverrideLanguage();
+  $language_manager->setConfigOverrideLanguage($language);
+  $mail_config = \Drupal::config('user.mail');
+  $token_options = ['langcode' => $langcode, 'callback' => 'rest_register_verify_email_mail_tokens', 'clear' => TRUE];
+  $message['subject'] .= PlainTextOutput::renderFromHtml($token_service->replace($mail_config->get($key . '.subject'), $variables, $token_options));
+  $message['body'][] = $token_service->replace($mail_config->get($key . '.body'), $variables, $token_options);
+  $language_manager->setConfigOverrideLanguage($original_language);
+}
+
+/**
+ * Token callback to add unsafe tokens for user mails.
+ *
+ * This function is used by \Drupal\Core\Utility\Token::replace() to set up
+ * some additional tokens that can be used in email messages generated by
+ * user_mail().
+ *
+ * @param array $replacements
+ *   An associative array variable containing mappings from token names to
+ *   values (for use with strtr()).
+ * @param array $data
+ *   An associative array of token replacement values. If the 'user' element
+ *   exists, it must contain a user account object with the following
+ *   properties:
+ *   - login: The UNIX timestamp of the user's last login.
+ *   - pass: The hashed account login password.
+ * @param array $options
+ *   A keyed array of settings and flags to control the token replacement
+ *   process. See \Drupal\Core\Utility\Token::replace().
+ */
+function rest_register_verify_email_mail_tokens(&$replacements, $data, $options) {
+  if (isset($data['user'])) {
+    $replacements['[user:one-time-login-url]'] = user_pass_reset_url($data['user'], $options);
+    $replacements['[user:cancel-url]'] = user_cancel_url($data['user'], $options);
+    $replacements['[user:rest-register-temp-token]'] = rest_register_verify_email_temp_token_token($data['user'], $options);
+  }
+}
+
+/**
+ * Generates a temp password to log in and reset their password.
+ *
+ * @param \Drupal\user\UserInterface $account
+ *   An object containing the user account.
+ * @param array $options
+ *   (optional) A keyed array of settings. Supported options are:
+ *   - langcode: A language code to be used when generating locale-sensitive
+ *    URLs. If langcode is NULL the users preferred language is used.
+ *
+ * @return string
+ *   A unique temp password for the user, from which
+ *   they can change their password.
+ */
+function rest_register_verify_email_temp_token_token($account, $options = []) {
+  $timestamp = time();
+  $langcode = isset($options['langcode']) ? $options['langcode'] : $account->getPreferredLangcode();
+  // OK now lets make a random password.
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!~';
+  $characters_length = strlen($characters);
+  $random_string = '';
+  for ($i = 0; $i < 10; $i++) {
+    $random_string .= $characters[rand(0, $characters_length - 1)];
+  }
+  // Create a temp store.
+  $service = \Drupal::service('tempstore.shared');
+  $collection = 'rest_register_verify_email';
+  // Yep use "get" to set it up.
+  $tempstore = $service->get($collection, $account->id()) ;
+  $tempstore->set('temp_token', $random_string);
+  return $random_string;
+}
+
+/**
+ * @see user_mail_tokens() & _user_mail_notify
+ */
+function _rest_register_verify_email_user_mail_notify($op, $account, $langcode = NULL) {
+  if ($op === 'email_verify_register_rest') {
+    if (\Drupal::config('user.settings')->get('notify.' . $op)) {
+      $params['account'] = $account;
+      $langcode = $langcode ? $langcode : $account->getPreferredLangcode();
+      // Get the custom site notification email to use as the from email address
+      // if it has been set.
+      $site_mail = \Drupal::config('system.site')->get('mail_notification');
+      // If the custom site notification email has not been set, we use the site
+      // default for this.
+      if (empty($site_mail)) {
+        $site_mail = \Drupal::config('system.site')->get('mail');
+      }
+      if (empty($site_mail)) {
+        $site_mail = ini_get('sendmail_from');
+      }
+      $mail = \Drupal::service('plugin.manager.mail')->mail('rest_register_verify_email', $op, $account->getEmail(), $langcode, $params, $site_mail);
+    }
+    return empty($mail) ? NULL : $mail['result'];
+  }
+  else {
+    if (empty($langcode)) {
+      $langcode = NULL;
+    }
+    // Just do the normal things ..nothing to see here;
+    return _user_mail_notify($op, $account, $langcode);
+  }
+}
+
+
+/**
+ * Implements hook_help().
+ *
+ * Through hook_help(), a module can make documentation available to the user
+ * for the module as a whole or for specific routes. Where the help appears
+ * depends on the $route_name specified.
+ *
+ * Help text will be displayed in the region designated for help text. Typically
+ * this is the 'Help' region which can be found at admin/structure/block.
+ *
+ * The help text in the first example below, will appear on the simple page at
+ * examples/page-example/simple.
+ *
+ * The second example text will be available on the admin help page (admin/help)
+ * in the list of help topics using the name of the module. To specify help in
+ * the admin section combine the special route name of 'help.page' with the
+ * module's machine name, as in 'help.page.page_example' below.
+ *
+ * See the Help text standard page for the proposed format of help texts.
+ *
+ * @see https://www.drupal.org/documentation/help-text-standards
+ *
+ * @see hook_help()
+ */
+function rest_register_verify_email_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+
+    case 'help.page.rest_register_verify_email':
+      // Help text for the admin section, using the module name in the path.
+      $output = ''; 
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The REST Register User with Email Verification module allows you to Register Users via a custom REST endpoint, then validating email address with custom token via a different endpoint. Works with the Core REST Web Services to enable these endpoints. For more information, see the <a href=":project-page">online documentation for the REST Register User with Email Verification module</a>.', 
+        [
+          // ':locale' => (\Drupal::moduleHandler()->moduleExists('locale')) ? \Drupal\Core\Url::fromRoute('help.page', ['name' => 'locale']) : '#',
+          // ':config-trans' => (\Drupal::moduleHandler()->moduleExists('config_translation')) ? \Drupal\Core\Url::fromRoute('help.page', ['name' => 'config_translation']) : '#',
+          // ':language' => \Drupal\Core\Url::fromRoute('help.page', ['name' => 'language']), 
+          // ':translation-entity' => 'https://www.drupal.org/documentation/modules/translation',
+          // ':field_help' => \Drupal\Core\Url::fromRoute('help.page', ['name' => 'field']),
+          ':project-page' => 'https://www.drupal.org/project/rest_register_verify_email',
+        ]) 
+        . '</p>';
+
+        //@TODO Uses section, giving details of module functionality and explaining what users can do, and links to the URLs where each specific functionality can be accessed.
+
+      // $output .= '<h3>' . t('Uses') . '</h3>';
+      // $output .= '<dl>';
+      // $output .= '<dt>' . t('Enabling translation') . '</dt>';
+      // $output .= '<dd>' . t('In order to translate content, the website must have at least two <a href=":url">languages</a>. When that is the case, you can enable translation for the desired content entities on the <a href=":translation-entity">Content language</a> page. When enabling translation you can choose the default language for content and decide whether to show the language selection field on the content editing forms.', 
+      //   [
+      //     ':url' => \Drupal\Core\Url::fromRoute('entity.configurable_language.collection'),
+      //     ':translation-entity' => \Drupal\Core\Url::fromRoute('language.content_settings_page'),
+      //     ':language-help' => \Drupal\Core\Url::fromRoute('help.page', ['name' => 'language']),
+      //   ])
+      //   . '</dd>';
+      // $output .= '<dt>' . t('Enabling field translation') . '</dt>';
+      // $output .= '<dd>' . t('You can define which fields of a content entity can be translated. For example, you might want to translate the title and body field while leaving the image field untranslated. If you exclude a field from being translated, it will still show up in the content editing form, but any changes made to that field will be applied to <em>all</em> translations of that content.') . '</dd>';
+      // $output .= '</dl>'; 
+      return $output; 
+    
+  }
+}
+
+
+/**
+ * @} End of "defgroup rest_register_verify_email".
+ */

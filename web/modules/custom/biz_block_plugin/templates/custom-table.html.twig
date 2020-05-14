@@ -129,80 +129,79 @@
   </div>
 {% endif %}
 
+
+{% if attributes.id == 'consultant-activities'%}
+    <div class="add-lobb-act-content">
+        <a type="button" href="/consultant-account-home/consultant-add-activity" class="btn btn-primary purple-button">{% trans %} Add a lobbying activity {% endtrans %}</a>
+    </div>
+{% elseif attributes.id  == 'in-house-activities'%}
+    <div class="add-lobb-act-content">
+        <a type="button" href="/in-house-account-home/in-house-add-activity" class="btn btn-primary purple-button">{% trans %} Add a lobbying activity{% endtrans %}</a>
+    </div>
+{% elseif attributes.id == 'internal-lobbyist' %}
+    <div class="add-lobb-act-content"><a type="button" href="/in-house-account-home/add_new_house_lobbyist" class="btn btn-primary purple-button">{% trans %}Add additional in-house lobbyist to the organization {% endtrans %} </a>
+    </div>
+{% endif %}
+
 <script>
 (function ($, Drupal) {
-  var base_url = '{{base_url}}' ? '{{base_url}}' : '' ;
-  var varsToPatch;
+    var varsToPatch;
 	var sid, webformId,flagToModify;
 
-  Drupal.behaviors.myBehavior = {
-    attach: function (context, settings) {
-      var sort_column = '{{sort_column}}' ? '{{sort_column}}' : 0 ;
-      var sort_order = '{{sort_order}}' ? '{{sort_order}}' : 'desc' ;
+    Drupal.behaviors.myBehavior = {
+        attach: function (context, settings) {
+            var sort_column = '{{sort_column}}' ? '{{sort_column}}' : 0 ;
+            var sort_order = '{{sort_order}}' ? '{{sort_order}}' : 'desc' ;
 
-      $('#{{attributes.id}}', context).once('dataTable').DataTable( {
-        "pagingType": "full_numbers",
-        "searching": false,
-        "order": [[ sort_column, sort_order ]]
-      });
+            $('#{{attributes.id}}', context).once('dataTable')
+                .on( 'order.dt',  function () { addEvent2Confirm(context, settings); } )
+                .on( 'page.dt',   function () { addEvent2Confirm(context, settings); } )
+                .DataTable( {
+                    "pagingType": "full_numbers",
+                    "searching": false,
+                    "order": [[ sort_column, sort_order ]]
+                });
 
-      $('#btn-confirm', context).once('bottonConfirm').each(function () {
-    		$(".delete-action, .accept-action").on("click", function(e){
-    		  varsToPatch = $(this).children("div").attr("data");
-    		  [sid, webformId,flagToModify] = varsToPatch.split('&');
-    		  $("#confirmModal").modal('show');
-    		});
-  
-    		$("#modal-btn-yes").on("click", function(){
-      		switch(flagToModify){
-        		case "active":
-        		  getCsrfToken(function (csrfToken) {
-        			  patchNode(csrfToken, { "status": flagToModify });
-        			});
-        		break;
-        		default:
-        		  getCsrfToken(function (csrfToken) {
-        			  patchNode(csrfToken, { "deleted": true });
-        			});
-        		break;
-      		}
-    		});
-  		  
-    		$("#modal-btn-no").on("click", function(){
-    		  $("#confirmModal").modal('hide');
-    		});
-      });
-    } 
-  };
-  function getCsrfToken(callback) {
-  	$.ajax({
-  	    url: base_url + 'rest/session/token',
-  	    method: 'GET',
-  	    cors: true,
-  	    headers: {
-  	      'Content-Type': 'application/json',
-  	    },
-  	    success: function (data) {
-  		    var csrfToken = data;
-  			callback(csrfToken);
-  	    }
-    });
-  }
+            $('#{{attributes.id}}', context).once('dataTable')
+                .on( 'order.dt',  function () { addEvent2Confirm(context, settings); } )
+                .on( 'page.dt',   function () { addEvent2Confirm(context, settings); } );
 
-  function patchNode(csrfToken, data) {
-    $.ajax({
-      url: base_url + 'webform_rest/' + webformId + '/submission/' + sid,
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': csrfToken
-      },
-      data: JSON.stringify(data),
-      success: function (data) {
-  	    $("#confirmModal").modal('hide');
-  	    location.reload(true);
-      }
-    });
-  }
+        } 
+    };
+    
+    function addEvent2Confirm(context, settings){        
+        $('.btn-confirm', context).click(function () {
+        		$(".delete-action, .accept-action").on("click", function(e){
+        		    varsToPatch = $(this).children("div").attr("data");
+        		    [sid, webformId,flagToModify] = varsToPatch.split('&');
+        		    $("#confirmModal").modal('show');
+        		});
+        		$("#modal-btn-yes").on("click", function(){
+            		switch(flagToModify){
+                		case "Active":
+                            patchNode({ "frontend_status": flagToModify, "status": flagToModify, 'user_uid': settings.user.uid });
+                		break;
+                		default:
+                            patchNode({ "deleted": true });
+                		break;
+            		}
+        		});
+        		$("#modal-btn-no").on("click", function(){
+        		    $("#confirmModal").modal('hide');
+        		});
+            });        
+    }
+    function patchNode(data) {
+        $.ajax({
+            url:    '/patch/' + webformId    + '/' + sid + '/' + JSON.stringify(data),
+            method: 'PATCH',
+            cors: false,
+            headers: {'Content-Type': 'application/json'},
+            success: function (data) {
+    	        $("#confirmModal").modal('hide');
+    	        location.reload(true);
+            }
+        });
+    }
 })(jQuery, Drupal);
 </script>

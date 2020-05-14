@@ -32,7 +32,7 @@ class RegistrationSettingsForm extends ConfigFormBase {
   }
 
   /** 
-  * {@inheritdoc}
+  * Build a form with textfields for this settings var configurations
   */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config(static::SETTINGS);
@@ -58,13 +58,18 @@ class RegistrationSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Json Path for user'),
       '#default_value' => $config->get('json_path'),
     ];
-    
+    $form['error_message'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Custom error message'),
+      '#default_value' => $config->get('error_message'),
+    ];
+
     
     return parent::buildForm($form, $form_state);
   }
 
   /** 
-  * {@inheritdoc}
+  * function for setting var configuration submission
   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Retrieve the configuration.
@@ -74,6 +79,7 @@ class RegistrationSettingsForm extends ConfigFormBase {
       ->set('validate_email_url_api', $form_state->getValue('validate_email_url_api'))
       ->set('json_path', $form_state->getValue('json_path'))
       ->set('base_url', $form_state->getValue('base_url'))
+      ->set('error_message', $form_state->getValue('error_message'))
       ->save();
     parent::submitForm($form, $form_state);
   }

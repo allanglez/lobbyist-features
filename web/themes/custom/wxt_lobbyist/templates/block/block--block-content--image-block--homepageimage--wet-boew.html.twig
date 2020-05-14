@@ -63,7 +63,7 @@
   {% block content %}
     {% set base_url = (render_var(url('<front>'))|trim ) %}
     {% set image_url = (file_url(content['#block_content'].field_image.entity.uri.value)|trim ) %}
-    <div class="homepage-image-100vh" style="height: 100%; background-size: cover; background-image:url({{base_url}}{{image_url}}  );background-repeat: no-repeat; background-position: bottom;"> 
+    <div class="homepage-image-100vh" style="height: 100%; background-size: cover; background-image:url({{site_files}}{{image_url}}  );background-repeat: no-repeat; background-position: bottom;"> 
       <div class="home-image-text">
         <div class="container">
           {{content.body}}

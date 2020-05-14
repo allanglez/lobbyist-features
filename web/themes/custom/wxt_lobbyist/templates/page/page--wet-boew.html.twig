@@ -96,6 +96,13 @@
           {{ page.content_footer }}
         {% endblock %}
       </div>
+
+      {% if page.page_form %}
+          {% block page_form %}
+            {{ page.page_form }}
+          {% endblock %}
+      {% endif %} 
+
     </div>
   </main>
 

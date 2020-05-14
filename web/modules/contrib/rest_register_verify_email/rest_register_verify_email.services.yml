@@ -1,0 +1,6 @@
+services:
+  rest_register_verify_email.route_subscriber:
+    class: Drupal\rest_register_verify_email\Routing\RestRegisterVerifyEmailRouteSubscriber
+    tags:
+      - { name: event_subscriber }
+

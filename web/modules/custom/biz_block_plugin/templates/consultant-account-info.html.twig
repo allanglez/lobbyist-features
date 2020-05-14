@@ -65,7 +65,7 @@
     <div class="field col no-padding align-self-start col-xs-4 col-sm-4 col-md-4">
       {% if organization.field_street_address_postal_code is not empty %}
         <p class="field-title"> {% trans %} Zip code {% endtrans %}  </p> 
-        <p>  {{ organization.field_street_address_postal_code}} </p>
+        <p>  {{ organization.field_street_address_postal_code |upper }} </p>
       {% endif %}
     </div>
     <div class="field col no-padding align-self-start col-xs-4 col-sm-4 col-md-4">
@@ -75,24 +75,18 @@
       {% endif %}
     </div>
   </div>
-   {% if link_edit_org is not empty %}
     <div class="header-row no-padding row col-xs-12 col-sm-12 col-md-12">
       <div class="field col no-padding align-self-start col-xs-4 col-sm-4 col-md-4">
-        <p class="field-title">{% trans %}Email{% endtrans %}</p>
-        <p>
-           {% if organization.mail is not empty %}
-           {{organization.mail}}
-           {% endif %} 
-        </p>
+        {% if organization.mail is not empty %}
+            <p class="field-title">{% trans %}Email{% endtrans %}</p>
+            <p>{{organization.mail}}</p>
+        {% endif %}
       </div>
       <div class="field col no-padding align-self-start col-xs-4 col-sm-4 col-md-4">
-        <p class="field-title">{% trans %}Telephone{% endtrans %}</p>
-        <p>
-           {% if organization.field_telephone is not empty %}
-           {{organization.field_telephone}}
-           {% endif %} 
-        </p>
+        {% if organization.field_telephone is not empty %}
+            <p class="field-title">{% trans %}Telephone{% endtrans %}</p>
+            <p>{{organization.field_telephone}}</p>
+        {% endif %}
       </div>
     </div>
-{% endif %}
 </div>

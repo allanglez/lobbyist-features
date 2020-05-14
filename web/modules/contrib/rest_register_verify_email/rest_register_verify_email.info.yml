@@ -1,0 +1,13 @@
+name: REST Register User with Email Verification
+type: module
+description: Register Users via REST endpoint, validating email address with custom token
+# core: 8.x
+package: Custom
+dependencies:
+  - rest
+
+# Information added by Drupal.org packaging script on 2019-05-23
+version: '8.x-1.0-rc1'
+core: '8.x'
+project: 'rest_register_verify_email'
+datestamp: 1558630692

@@ -1,98 +1,158 @@
 <?php
-  namespace Drupal\biz_block_plugin\Plugin\Block;
-  
-  use Drupal\Core\Block\BlockBase;
-  use Drupal\Core\Block\BlockPluginInterface;
-  use Drupal\Core\Form\FormBuilderInterface;
-  use Drupal\Core\Form\FormStateInterface;
-  use Drupal\Core\Access\AccessResult;
-  use Drupal\Core\Cache\Cache;
-  use Drupal\biz_webforms\BizWebformController;
-  use Drupal\biz_block_plugin\Controller\GeneralFunctions;
+namespace Drupal\biz_block_plugin\Plugin\Block;
+
+use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Cache\Cache;
+use Drupal\biz_webforms\BizWebformController;
+use Drupal\biz_block_plugin\Controller\GeneralFunctions;
 use Symfony\Component\HttpFoundation\RequestStack;
+
 /**
- * Provides a custom block.
- *
- * @Block(
- *   id = "in-house_single_act_block",
- *   admin_label = @Translation("In-House Activity block"),
- *   category = @Translation("Bizont custom block")
- * )
- */
-  class InHouseActivity extends BlockBase implements BlockPluginInterface{
-        
-    public function getCacheMaxAge() {
-      // If you want to disable caching for this block.
-      return 0;
-    } 
+  * Provides a custom block.
+  *
+  * @Block(
+  *   id = "in-house_single_act_block",
+  *   admin_label = @Translation("In-House Activity block"),
+  *   category = @Translation("Bizont custom block")
+  * )
+*/
+class InHouseActivity extends BlockBase implements BlockPluginInterface{
+
     /**
-     * {@inheritdoc}
+     * Display all activity information
     */
     public function build(){
-      $current_user = \Drupal::currentUser();
-      $email = $current_user->getEmail();
-      $roles = $current_user->getRoles();
-      
-      $activity_endpoind = \Drupal::config('biz_block_plugin.settings')->get('in_house_activity');
-      $base_url = \Drupal::config('biz_lobbyist_registration.settings')->get('base_url');
-      $param = \Drupal::request()->query->all();
-      //Get activity ID
-      $id = isset($param['id']) ? $param['id'] : "0";
-      $activity_response = GeneralFunctions::getSubmission($activity_endpoind, $id);
-      $activity_data = json_decode($activity_response['message']);
-      $activity_data= $activity_data[0];
-      $activity_email = isset($activity_data->mail) ? $activity_data->mail : "";
-      $url = $base_url . \Drupal::config('biz_lobbyist_registration.settings')->get('json_path') . $activity_email;
-      $get_organization = BizWebformController::get_endpoint($url, [], "GET", []);
-      if($get_organization['code'] !== 400){
-        $organization = json_decode($get_organization["message"])[0];
-      }
-      if(isset($activity_data) && !empty($activity_data)){
-	      $base_href = '/in-house-account-home/in-house-add-activity-edit?';
-        foreach($activity_data as $field => $value) { 
-            $base_href .=  $field . '=' . $value . '&'; 
-        }
-        $editable = ($email === $activity_email ||  in_array("role_administrator", $roles)) ? TRUE : FALSE;
-        
+        $validate = \Drupal::config('biz_business_rules.settings')->get('wave_for_not_validate');
+        $base_url = \Drupal::config('biz_lobbyist_registration.settings')->get('base_url');
+        $current_user = \Drupal::currentUser();        
+        $email = !empty($current_user->getEmail()) ? $current_user->getEmail(): 'anonymous';
+        $roles = $current_user->getRoles();
+        $param = \Drupal::request()->query->all();
+        $is_commissioner = in_array("role_administrator", $roles);
+        $today = date("Y-m-d"); // Today
+        $current_month = date('m');
+        $update_status = "";
+        $certify = "";
         $edit_activity = "";
-        if($editable){
-          if(!empty($activity_data)){
-            $base_href = '/in-house-account-home/in-house-activity-view/in-house-add-activity-edit?org=' . $id .'&';
-            foreach($activity_data as $field => $value) { 
-                $base_href .=  $field . '=' . $value . '&'; 
-            }
-           $edit_activity =  $base_href;
-          }
+        $edit_organization = "";
+        $content = [];
+        if ($current_month == '12') {
+                $nextYear = date('Y', strtotime('+1 year'));
+                $from = date(date('Y') . '-12-31');
+                $to = date($nextYear . '-01-31');
         }
-        if($email === $activity_email){
-          $edit_organization = '/user/' . \Drupal::currentUser()->id() . '/edit';
+        elseif ($current_month >= 1 && $current_month <= 11 ){
+                $prevYear = date('Y', strtotime('-1 year'));
+                $from = date($prevYear . '-12-31');
+                $to = date(date('Y'). '-01-31');
         }
-        $content[] = array( '#theme' => 'in_house_account_info', '#organization'  => $organization,  "#link_edit_org" => $edit_organization, "#description" => t(' Consultant lobbyist'));   
-        $content[] = array( '#theme' => 'in_house_activity', '#activity' => $activity_data, "#link_edit_act" => $edit_activity );
-       
-        if($editable){
-          $url = $base_url . \Drupal::config('biz_block_plugin.settings')->get('get_comments') ."?_format=json&id=" . $id;
-          $get_comments = BizWebformController::get_endpoint($url, [], "GET", []);
-          
-          if($get_comments['code'] !== 400){
-              $get_comments = json_decode($get_comments["message"]);
-              $title = '<div class="organization info-organization purple-header new-notifications-header">'
-              .   '<div class="col-xs-12">'
-              .     '<p><strong>'.t('Your messages').'</strong></p>'
-              .   '</div>'
-              . '</div>';
-              $content[] = array('#type' => 'markup', '#markup' => $title);
-              if(!empty($get_comments) && is_array($get_comments)){
-                foreach($get_comments as $key => $comment){
-                  if(isset($comment->comment_body) && !empty($comment->comment_body)){
-                    $content[] = array( '#theme' => 'activity_messages', '#subject' => $comment->subject, "#user_name" => $comment->user_name , "#message" => $comment->comment_body, "#date" =>  $comment->changed);
-                  }
+        //Get activity ID
+        $id = isset($param['id']) ? $param['id'] : "0";
+        $is_owner = FALSE;
+
+        $request_options = BizWebformController::get_request_options(FALSE);
+        $url_get_endpoint = $base_url. 'api/activity/'.$id.'/add_a_lobbying_activity/' . $email . '?_format=json' ;
+        $activity_endpoint = BizWebformController::execute_external_api($url_get_endpoint, [], "GET", $request_options);
+        if($activity_endpoint['code'] !== 400){
+            $activity_endpoint['message'] = json_decode($activity_endpoint['message']);
+            $is_owner = $activity_endpoint['message']->owner;          
+            $auth = $is_commissioner || $is_owner ? TRUE : FALSE;
+            $request_options = BizWebformController::get_request_options($auth);
+            $activity_endpoint = $activity_endpoint['message']->endpoint;
+        }
+        else{
+            \Drupal::logger('InHouseActivity')->error(json_encode($activity_endpoint));
+            drupal_set_message(t('The website encountered an unexpected error. Please try again later.'), 'error');
+            return FALSE;
+        }
+        //Get activity data   
+        $activity_response = GeneralFunctions::getSubmission($activity_endpoint, $id, $auth);
+        if($activity_response['code'] == 400){
+            \Drupal::logger('InHouseActivity')->error(json_encode($activity_response));
+            drupal_set_message(t('The website encountered an unexpected error. Please try again later.'), 'error');
+            return FALSE;
+        }     
+
+        $activity_data = isset(json_decode($activity_response['message'])[0]) ? json_decode($activity_response['message'])[0] : [];
+
+        //Get activity's owner
+        $user_id = isset($activity_data->uid) ? $activity_data->uid : "";
+        //Generate the URL for get user information
+        $url = $base_url .( $is_owner || $is_commissioner ? 'api/user': 'public/api/user').'?_formt=json&id=' . $user_id;
+        
+        $get_organization = BizWebformController::execute_external_api($url, [], 'GET', $request_options);
+        if($get_organization['code'] == 400){
+            \Drupal::logger('InHouseActivity')->error($url . ': '. json_encode($get_organization) .'; request_options: ' . json_encode($request_options));
+            drupal_set_message(t('The website encountered an unexpected error. Please try again later.'), 'error');
+            return FALSE;
+        }
+        $organization = json_decode($get_organization["message"])[0];
+        if(!empty($activity_data)){
+            //Commissioners and owner can edit the activity
+            if( $is_commissioner || ($is_owner && (($today >= $from && $today <= $to) || $activity_data->status !== 'Active'))){
+                $base_href = '/in-house-account-home/in-house-activity-view/in-house-add-activity-edit?org=' . $id .'&';
+                foreach($activity_data as $field => $value) { 
+                        $value = str_replace('<br />', '%3Cbr%20/%3E', $value);
+                        $base_href .=    $field . '=' . $value . '&'; 
                 }
-              }
-          }
-          $content[] = \Drupal::formBuilder()->getForm("Drupal\biz_activity_messages\Form\ActivityMessages"); 
+             $edit_activity =    $base_href;
+            }
+            //Only the Owner can certify
+            if($is_owner){
+                $content[] = array(
+                    '#theme' => 'modal_confirmation',
+                    '#title' => 'Accept Confirmation',
+                    '#body_message' => 'Are you sure you want to certify this activity?',
+                    '#label_yes' => 'Accept',
+                    '#label_cancel'=> 'Cancel'
+                );
+                $edit_organization = '/user/' . \Drupal::currentUser()->id() . '/edit';
+                $certify = '<div class="accept-action col-md-4 col-md-6" id="btn-certify"><div class="btn btn-primary purple-button" data="'.$id.'&amp;add_a_lobbying_activity&amp;certify&amp;'. $organization->uid .'">I certify that this information is accurate</div></div>';
+            }
+            $content[] = [  '#theme' => 'in_house_account_info', 
+                            '#organization'    => $organization,
+                            "#link_edit_org" => $edit_organization, 
+                            "#description" => t(' In-house lobbyist')
+                        ];     
+            $content[] = [  '#theme' => 'in_house_activity',
+                            '#activity' => $activity_data,
+                            "#link_edit_act" => $edit_activity ,
+                            "#base_url" => $base_url 
+                        ];
+
+            //Print Comments
+            if($is_commissioner || $is_owner){
+                $content = array_merge($content, BizWebformController::get_comments_array($id));
+            }
+            
+            if($is_commissioner || ( $is_owner && $activity_data->status !== 'Active')){
+                // Add the comments to the page 
+                $content[] = \Drupal::formBuilder()->getForm("Drupal\biz_activity_messages\Form\ActivityMessages");
+                if(!$validate && $today >= $from && $today <= $to && $activity_data->status == 'Active') {
+    			    $content[] = array('#type' => 'markup', '#markup' => $certify);
+    		    }
+            }
+            //Only the commissioner can update the status to 'Non-compliant'
+            if($is_commissioner){
+                 $content[] = array(
+                    '#theme' => 'modal_confirmation',
+                    '#title' => 'Accept Confirmation',
+                    '#body_message' => 'Are you sure you want to mark as "Non compliant"?',
+                    '#label_yes' => 'Accept',
+                    '#label_cancel'=> 'Cancel'
+                );
+                $update_status = '<div class="accept-action" id="btn-status"><div class="btn btn-primary purple-button" data="'.$id.'&amp;add_a_lobbying_activity&amp;frontend_status&amp;0">Mark as Non compliant</div></div>';
+            }
+            $content[] = array('#type' => 'markup', '#markup' => $update_status);
+            return $content;
         }
-        return $content;
-      }
     }
-  }
+    /****
+        * Disable caching for this block.
+        */
+    public function getCacheMaxAge() {
+        return 0;
+    }
+}

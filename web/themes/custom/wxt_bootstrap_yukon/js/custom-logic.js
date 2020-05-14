@@ -15,7 +15,6 @@ jQuery(document).ready(function($){
       overlay   = $('.global-nav_overlay'),
       addAnotherRequest = $("[data-drupal-selector='edit-information-add-add-submit']");
 
-      //classList = $('.menu li');
   var navLinks = navMenu.find('button, a').filter(':visible');
 
   navMenu.on('keydown', handleKeydown);

@@ -11,9 +11,11 @@ global-styling:
   js:    
     js/registration-modal.js: {}
     js/select2.full.min.js: {}
-    js/webforms-helptexts.js: {}
     js/webforms-steps-confirm-check.js: {}
     js/jquery.dataTables.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
 fonts:
   css:
     theme:
@@ -39,12 +41,14 @@ fonts:
     
   dependencies:
     - core/jquery
+    - core/jquery.once
 
 drupal.wxt_bootstrap:
   js:
     js/drupal.wxt_bootstrap.js: {}
   dependencies:
     - core/jquery
+    - core/jquery.once
     - core/drupal
     - core/drupalSettings
     - wxt_bootstrap/framework

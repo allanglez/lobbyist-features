@@ -11153,6 +11153,7 @@ body {
 
 /* MODAL */
 #webform-submission-lobbyist-finder-modal-form-ajax > form{
+  max-height: 413px;
 }
 .ui-dialog form > div:nth-child(2){
   margin-bottom: 0px;
@@ -11169,7 +11170,6 @@ body {
   overflow: visible;
 }
 form div[data-drupal-messages]{
-  position: absolute;
   top: -28px;
 }
 .ui-dialog .ui-dialog-buttonpane{
@@ -11737,6 +11737,8 @@ img {
   -webkit-transition: opacity .3s;
   transition: opacity .3s;
   opacity: 1;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
 }
 
 img[data-src] {
@@ -12525,7 +12527,7 @@ body .aurora--main {
 
 @media (min-width:767px) {
   body .main-content-wrap {
-    padding-top: 60px;
+    padding-top: 20px;
   }
 
   body .aurora--main {

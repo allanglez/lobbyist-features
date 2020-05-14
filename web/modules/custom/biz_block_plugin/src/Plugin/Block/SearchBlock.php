@@ -14,26 +14,29 @@
   use Drupal\Core\Database\DatabaseExceptionWrapper;
 
 /**
- * Provides a custom block.
- *
- * @Block(
- *   id = "search_activity_home_block",
- *   admin_label = @Translation("Search activity home block"),
- *   category = @Translation("Bizont custom block")
- * )
- */
-  class SearchBlock extends BlockBase implements BlockPluginInterface{
+  * Provides a custom block.
+  *
+  * @Block(
+  *   id = "search_activity_home_block",
+  *   admin_label = @Translation("Search activity home block"),
+  *   category = @Translation("Bizont custom block")
+  * )
+  */
+class SearchBlock extends BlockBase implements BlockPluginInterface{
 
+    /****
+        * Disable caching for this block.
+        */
     public function getCacheMaxAge() {
-      // If you want to disable caching for this block.
-      return 0;
+        return 0;
     }
+    
     /**
-     * {@inheritdoc}
+     * This function build a custom search block from homepage
     */
     public function build() {
       $content[] = array('#theme' => 'search_block_home');
       return $content;
     }  
-  }
+}
   

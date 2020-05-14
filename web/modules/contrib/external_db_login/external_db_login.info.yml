@@ -1,0 +1,14 @@
+name: External DB Login
+type: module
+description: Provide functionality to login from external database.
+package: External DB Login
+# core: 8.x
+configure: external_db_login.configuration
+dependencies:
+  - user
+
+# Information added by Drupal.org packaging script on 2017-12-05
+version: '8.x-1.0-alpha05'
+core: '8.x'
+project: 'external_db_login'
+datestamp: 1512466090
